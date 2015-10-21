@@ -4,10 +4,11 @@ var fs = require('fs');
 fs.readFile('/application/vault_data.json', function (err, html) {
   http.createServer(function(request, response) {
     response.writeHeader(200, {"Content-Type": "text/html"});
-    response.write("Hello, World! This is a Node.js app version 08.<br /><br />");
+    response.write("Hello, World! This is a Node.js app version 09.<br /><br />");
 
     if (err) {
       response.write(err);
+      response.end();
       return console.log(err);
     }
 
