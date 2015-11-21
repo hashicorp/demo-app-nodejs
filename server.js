@@ -1,17 +1,22 @@
-var http = require("http");
-var fs = require('fs');
+var http = require("http"),
+    fs = require("fs"),
+    vaultDir = "/application/vault/",
+    files = [],
+    port = 8888;
 
-fs.readFile('/application/index.html', function (err, html) {
-  http.createServer(function(request, response) {
-    response.writeHeader(200, {"Content-Type": "text/html"});
-    response.write("Hello, World! This is Node.js app v38.");
+function handleRequest(req, res) {
+  res.writeHead(200, {"Content-type":"text/html"});
+  res.write("Hello, World! This is Node.js app v38.");
 
-    if (err) {
-      response.write(err.message);
-    } else {
-      response.write(html);
-    }
+  files = fs.readdirSync(vaultDir);
 
-    response.end();
-  }).listen(8888);
-});
+  for(var i = 0; i < files.length; i++) {
+    res.write(fs.readFileSync(vaultDir + files[i], "binary"));
+  }
+
+  res.end();
+}
+
+http.createServer(handleRequest).listen(port);
+
+console.log("Static file server running at\n  => http://localhost:" + port);
