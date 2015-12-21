@@ -9,7 +9,7 @@ var http = require("http"),
 
 function handleRequest(req, res) {
   res.writeHead(200, {"Content-type":"text/html"});
-  res.write("Hello, World! This is Node.js app v46. Last updated at 2015-12-17T14:56.");
+  res.write("Hello, World! This is Node.js app v47. Last updated at 2015-12-21T06:50.");
 
   // Only show Vault files if the SHOW_VAULT KV is set to true in Consul
   if (fs.existsSync(vaultDir) && showVault && (showVault.toUpperCase() === "TRUE" || showVault === "1")) {
