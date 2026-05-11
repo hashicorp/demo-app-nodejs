@@ -1,3 +1,7 @@
+/**
+ * Copyright IBM Corp. 2015, 2026
+ */
+
 var http = require("http"),
     fs = require("fs"),
     vaultDir = "/application/vault/",
